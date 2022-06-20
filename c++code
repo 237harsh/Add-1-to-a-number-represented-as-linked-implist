@@ -1,0 +1,70 @@
+class Solution
+{
+    public:
+    Node* addOne(Node *head) 
+    {
+      
+      
+      //first reverse the linklist
+      //take a carry =1;
+      //add carry to the number 
+      //at last if carry remains one then create a new node and insert value
+      //finally reverse link list again
+        Node *curr=head,*prev=NULL,*next;
+        while(curr!=NULL)
+        {
+            next=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=next;
+        }
+        head=prev;
+        int r=1;
+        
+        Node *p=head;
+        Node *prev2;
+       
+        while(p!=NULL)
+        {
+            if(p)
+           if(r==1)
+           {
+               if(p->data<9)
+               {
+                   p->data+=1;
+                   r=0;
+               }
+               else if(p->data==9)
+               {
+                   p->data=0;
+                   r=1;
+               }
+           }
+             prev2=p;
+           p=p->next;
+           
+        }
+        
+        if(r==1)
+        {
+            Node *n=  new Node(1);
+            prev2->next=n;
+            n->next=NULL;
+        }
+        
+       curr=head,prev=NULL;
+        while(curr!=NULL)
+        {
+            next=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=next;
+        }
+        head=prev;
+        return head;
+       
+    }
+};
+
+
+https://practice.geeksforgeeks.org/problems/add-1-to-a-number-represented-as-linked-list/1#
